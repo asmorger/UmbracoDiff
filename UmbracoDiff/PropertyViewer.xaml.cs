@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using UmbracoDiff.Entities;
+using UmbracoDiff.Views.Screens;
 
 namespace UmbracoCompare
 {
@@ -20,8 +21,8 @@ namespace UmbracoCompare
     /// </summary>
     public partial class PropertyViewer : Window
     {
-        private readonly MainWindow.PropertyViewModel _model;
-        public PropertyViewer(MainWindow.PropertyViewModel viewModel)
+        private readonly CompareScreenView.PropertyViewModel _model;
+        public PropertyViewer(CompareScreenView.PropertyViewModel viewModel)
         {
             _model = viewModel;
             InitializeComponent();

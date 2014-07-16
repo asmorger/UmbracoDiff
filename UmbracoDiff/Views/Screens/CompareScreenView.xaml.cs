@@ -5,20 +5,21 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using MahApps.Metro.Controls;
+using UmbracoCompare;
 using UmbracoDiff.Entities;
 using UmbracoDiff.Helpers;
 
-namespace UmbracoCompare
+namespace UmbracoDiff.Views.Screens
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class CompareScreenView : UserControl
     {
         private CmsNodeHelper _left;
         private CmsNodeHelper _right;
 
-        public MainWindow()
+        public CompareScreenView()
         {
             InitializeComponent();
             DataContext = this;
