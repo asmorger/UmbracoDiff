@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using MahApps.Metro.Controls;
 using UmbracoDiff.Entities;
 using UmbracoDiff.Helpers;
 
@@ -12,7 +13,7 @@ namespace UmbracoCompare
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : MetroWindow
     {
         private CmsNodeHelper _left;
         private CmsNodeHelper _right;
