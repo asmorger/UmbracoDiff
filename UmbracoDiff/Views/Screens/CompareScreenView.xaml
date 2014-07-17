@@ -12,11 +12,11 @@
         <StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                 <TextBlock MinWidth="135" TextAlignment="Right" Margin="5">Left Connection String:</TextBlock>
-                <TextBox Name="ConnectionString1TextBox" Width="572"></TextBox>
+                <TextBox Name="LeftConnection_Name" Width="572"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock MinWidth="135" TextAlignment="Right" Margin="5">Right Connection String:</TextBlock>
-                <TextBox Name="ConnectionString2TextBox" Width="572"></TextBox>
+                <TextBox Name="RightConnection_Name" Width="572"></TextBox>
             </StackPanel>
             <Button Content="Compare" Click="Button_Click"></Button>
         </StackPanel>

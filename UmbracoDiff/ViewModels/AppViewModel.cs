@@ -1,10 +1,11 @@
 ﻿using Autofac;
 using Caliburn.Micro;
+using UmbracoDiff.Events;
 using UmbracoDiff.ViewModels.Screens;
 
 namespace UmbracoDiff.ViewModels
 {
-    public class AppViewModel : Conductor<IScreen>
+    public class AppViewModel : Conductor<IScreen>, IHandle<SettingsNotConfiguredEvent>
     {
         private readonly IComponentContext _componentContext;
         private readonly IEventAggregator _eventAggregator;
@@ -28,6 +29,11 @@ namespace UmbracoDiff.ViewModels
         {
             var viewModel = _componentContext.Resolve<TViewModel>();
             ActivateItem(viewModel);
+        }
+
+        public void Handle(SettingsNotConfiguredEvent message)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

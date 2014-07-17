@@ -37,8 +37,8 @@ namespace UmbracoDiff.Views.Screens
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            _left = new CmsNodeHelper(ConnectionString1TextBox.Text);
-            _right = new CmsNodeHelper(ConnectionString2TextBox.Text);
+            _left = new CmsNodeHelper(LeftConnection_Name.Text);
+            _right = new CmsNodeHelper(RightConnection_Name.Text);
 
             CompareAndBindDataTypes();
             CompareAndBindDocTypes();
@@ -100,8 +100,8 @@ namespace UmbracoDiff.Views.Screens
             _templatesOnlyLeft.Clear();
             _templatesOnlyRight.Clear();
 
-            var leftData =  _left.GetAllTemplates(ConnectionString1TextBox.Text);
-            var rightData = _right.GetAllTemplates(ConnectionString2TextBox.Text);
+            var leftData =  _left.GetAllTemplates(LeftConnection_Name.Text);
+            var rightData = _right.GetAllTemplates(RightConnection_Name.Text);
 
             CompareAndFill(leftData, rightData, _templatesOnlyLeft, _templatesOnlyRight);
 
