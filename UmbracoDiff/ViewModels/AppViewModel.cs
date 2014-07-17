@@ -4,7 +4,7 @@ using UmbracoDiff.ViewModels.Screens;
 
 namespace UmbracoDiff.ViewModels
 {
-    public class AppViewModel : Conductor<object>
+    public class AppViewModel : Conductor<IScreen>
     {
         private readonly IComponentContext _componentContext;
         private readonly IEventAggregator _eventAggregator;
@@ -15,6 +15,8 @@ namespace UmbracoDiff.ViewModels
             _eventAggregator = eventAggregator;
 
             _eventAggregator.Subscribe(this);
+
+            this.DisplayName = "Umbraco Diff - Compare";
         }
 
         protected override void OnInitialize()
@@ -22,7 +24,7 @@ namespace UmbracoDiff.ViewModels
             Activate<CompareScreenViewModel>();
         }
 
-        private void Activate<TViewModel>() where TViewModel : INotifyPropertyChangedEx
+        private void Activate<TViewModel>() where TViewModel : IScreen
         {
             var viewModel = _componentContext.Resolve<TViewModel>();
             ActivateItem(viewModel);

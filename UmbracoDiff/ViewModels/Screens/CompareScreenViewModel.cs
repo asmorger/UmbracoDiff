@@ -1,13 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
+using PropertyChanged;
 
 namespace UmbracoDiff.ViewModels.Screens
 {
+    [ImplementPropertyChanged]
     public class CompareScreenViewModel : Screen
     {
+        public string DisplayName { get; set; }
+
+        protected override void OnInitialize()
+        {
+            base.OnInitialize();
+        }
     }
 }

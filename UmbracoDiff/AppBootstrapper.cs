@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using Autofac;
 using Caliburn.Micro;
+using UmbracoDiff.ViewModels;
 using UmbracoDiff.ViewModels.Screens;
 
 namespace UmbracoDiff
@@ -93,7 +94,7 @@ namespace UmbracoDiff
         /// <param name="e">The args.</param>
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            DisplayRootViewFor<CompareScreenViewModel>();
+            DisplayRootViewFor<AppViewModel>();
         }
     }
 }

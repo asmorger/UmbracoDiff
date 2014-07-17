@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using MahApps.Metro.Controls;
 using UmbracoCompare;
 using UmbracoDiff.Entities;
 using UmbracoDiff.Helpers;

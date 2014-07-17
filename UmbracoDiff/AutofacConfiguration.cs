@@ -2,6 +2,7 @@
 using System.Linq;
 using Autofac;
 using Caliburn.Micro;
+using UmbracoDiff.Services;
 
 namespace UmbracoDiff
 {
@@ -26,8 +27,8 @@ namespace UmbracoDiff
         private static void RegisterViewModels(ContainerBuilder builder)
         {
             builder.RegisterAssemblyTypes(AssemblySource.Instance.ToArray())
-                .Where(type => type.Name.EndsWith("ViewModel"))
-                .Where(type => !string.IsNullOrWhiteSpace(type.Namespace) && type.Namespace.Contains("ViewModels"))
+                .Where(type => type.Name.EndsWith("ViewModel") || type.Name.EndsWith("Model"))
+                .Where(type => !string.IsNullOrWhiteSpace(type.Namespace) && (type.Namespace.Contains("ViewModels") || type.Namespace.Contains("Models")))
                 .Where(type => type.GetInterface(typeof (INotifyPropertyChanged).Name) != null)
                 .AsSelf()
                 .InstancePerDependency();
@@ -62,6 +63,7 @@ namespace UmbracoDiff
         {
             builder.RegisterType<WindowManager>().As<IWindowManager>().SingleInstance();
             builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
+            builder.RegisterType<ConfigurationService>().As<IConfigurationService>().SingleInstance();
         }
     }
 }
