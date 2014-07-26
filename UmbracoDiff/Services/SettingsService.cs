@@ -11,10 +11,9 @@ namespace UmbracoDiff.Services
 
         private Settings settings;
 
-        public SettingsService()
+        public SettingsService(string folderPath)
         {
-            string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            _jsonPath = Path.Combine(appDataPath, "UmbracoDiff", "settings.json");
+            _jsonPath = Path.Combine(folderPath, "UmbracoDiff", "settings.json");
 
             var directoryName = Path.GetDirectoryName(_jsonPath);
             Directory.CreateDirectory(directoryName);
@@ -25,15 +24,14 @@ namespace UmbracoDiff.Services
             get { return File.Exists(_jsonPath); }
         }
 
-        public Settings Settings
+        public Settings Get()
         {
-            get
+            if (settings == null)
             {
-                if (settings == null)
-                    settings = Load();
-                return settings;
+                settings = Load();
             }
-            set { settings = value; }
+                
+            return settings;
         }
 
         public void Save(Settings settings)
@@ -49,8 +47,8 @@ namespace UmbracoDiff.Services
         {
             if (!File.Exists(_jsonPath))
             {
-                Settings = new Settings();
-                return Settings;
+                settings = new Settings();
+                return settings;
             }
 
             using (var sr = new StreamReader(_jsonPath))

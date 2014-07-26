@@ -20,8 +20,10 @@ namespace UmbracoDiff.ViewModels.Screens
             this.DisplayName = "Compare";
         }
 
-        protected override void OnInitialize()
+        protected override void OnActivate()
         {
+            base.OnActivate();
+
             if (!_settingsService.IsConfigured)
             {
                 _eventAggregator.PublishOnUIThread(new NotConfiguredEvent());

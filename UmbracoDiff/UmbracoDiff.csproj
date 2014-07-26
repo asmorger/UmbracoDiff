@@ -41,6 +41,12 @@
     <Reference Include="Autofac">
       <HintPath>..\packages\Autofac.3.5.0\lib\net40\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="businesslogic">
       <HintPath>..\ThirdParty\Umbraco-4.11.10\businesslogic.dll</HintPath>
     </Reference>
@@ -105,6 +111,7 @@
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="AutofacConfiguration.cs" />
+    <Compile Include="AutoMapperConfiguration.cs" />
     <Compile Include="Enums\ScreenTabDisplayOrder.cs" />
     <Compile Include="Events\NotConfiguredEvent.cs" />
     <Compile Include="Models\Settings.cs" />
@@ -116,13 +123,21 @@
     <Compile Include="Services\SettingsService.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
     <Compile Include="ViewModels\Base\IScreenTab.cs" />
+    <Compile Include="ViewModels\Dialogs\DbConnectionDialogViewModel.cs" />
     <Compile Include="ViewModels\Screens\CompareScreenViewModel.cs" />
     <Compile Include="ViewModels\Screens\SettingsScreenViewModel.cs" />
+    <Compile Include="ViewModels\Settings\UmbracoConnectionViewModel.cs" />
     <Compile Include="Views\AppView.xaml.cs">
       <DependentUpon>AppView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Dialogs\DbConnectionDialogView.xaml.cs">
+      <DependentUpon>DbConnectionDialogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Screens\SettingsScreenView.xaml.cs">
       <DependentUpon>SettingsScreenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\UmbracoConnectionView.xaml.cs">
+      <DependentUpon>UmbracoConnectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UmbracoConnection.xaml.cs">
       <DependentUpon>UmbracoConnection.xaml</DependentUpon>
@@ -130,6 +145,10 @@
     <Page Include="Resources\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Dialogs\DbConnectionDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Screens\CompareScreenView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -158,6 +177,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Screens\SettingsScreenView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings\UmbracoConnectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -201,6 +224,7 @@
   <ItemGroup>
     <Resource Include="Resources\Entypo-license.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -211,6 +235,7 @@
     <Error Condition="!Exists('..\packages\Fody.1.24.0\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.24.0\build\Fody.targets'))" />
   </Target>
   <Import Project="..\packages\Fody.1.24.0\build\Fody.targets" Condition="Exists('..\packages\Fody.1.24.0\build\Fody.targets')" />
+  <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

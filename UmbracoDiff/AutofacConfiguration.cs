@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using Autofac;
 using Caliburn.Micro;
@@ -65,7 +66,9 @@ namespace UmbracoDiff
         {
             builder.RegisterType<WindowManager>().As<IWindowManager>().SingleInstance();
             builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
-            builder.RegisterType<SettingsService>().As<ISettingsService>().SingleInstance();
+            builder.RegisterType<SettingsService>().As<ISettingsService>()
+                .WithParameter("folderPath", Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData))
+                .SingleInstance();
 
             builder.RegisterAssemblyTypes(AssemblySource.Instance.ToArray()).AssignableTo<IScreenTab>().AsImplementedInterfaces();
         }

@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using Autofac;
 using Caliburn.Micro;
+using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using PropertyChanged;
 using UmbracoDiff.Events;
 using UmbracoDiff.Services;
@@ -12,19 +15,12 @@ namespace UmbracoDiff.ViewModels
     [ImplementPropertyChanged]
     public class AppViewModel : Conductor<IScreenTab>.Collection.OneActive, IHandle<NotConfiguredEvent>
     {
-        private readonly IComponentContext _componentContext;
         private readonly IEventAggregator _eventAggregator;
-        private readonly ISettingsService _settingsService;
 
-        public AppViewModel(IEnumerable<IScreenTab> tabs
-                          , IComponentContext componentContext
-                          , IEventAggregator eventAggregator
-                          , ISettingsService settingsService)
+        public AppViewModel(IEnumerable<IScreenTab> tabs, IEventAggregator eventAggregator)
         {
-            _componentContext = componentContext;
             _eventAggregator = eventAggregator;
-            _settingsService = settingsService;
-
+            
             var sortedTabs = tabs.OrderBy(t => (int) t.GetDisplayOrder());
             Items.AddRange(sortedTabs);
 
@@ -41,6 +37,14 @@ namespace UmbracoDiff.ViewModels
         public void Handle(NotConfiguredEvent message)
         {
             ActivateTab<SettingsScreenViewModel>();
+
+            var window = Application.Current.MainWindow as MetroWindow;
+
+            if (window != null)
+            {
+                window.ShowMessageAsync("Settings Not Configured",
+                    "Please configure the settings field and save them to use this application");
+            }
         }
 
         private void ActivateTab<TViewModel>() where TViewModel : IScreenTab

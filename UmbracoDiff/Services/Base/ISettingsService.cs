@@ -10,6 +10,6 @@ namespace UmbracoDiff.Services
 
         bool IsConfigured { get; }
 
-        Settings Settings { get; set; }
+        Settings Get();
     }
 }
