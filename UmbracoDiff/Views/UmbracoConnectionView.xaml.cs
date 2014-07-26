@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace UmbracoDiff.Views
 {
     /// <summary>
-    /// Interaction logic for UmbracoConnectionModel.xaml
+    /// Interaction logic for UmbracoConnectionView.xaml
     /// </summary>
-    public partial class UmbracoConnection : UserControl
+    public partial class UmbracoConnectionView : UserControl
     {
-        public UmbracoConnection()
+        public UmbracoConnectionView()
         {
             InitializeComponent();
         }
