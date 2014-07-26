@@ -3,6 +3,8 @@ using System.Linq;
 using Autofac;
 using Caliburn.Micro;
 using UmbracoDiff.Services;
+using UmbracoDiff.ViewModels;
+using UmbracoDiff.ViewModels.Screens;
 
 namespace UmbracoDiff
 {
@@ -63,7 +65,9 @@ namespace UmbracoDiff
         {
             builder.RegisterType<WindowManager>().As<IWindowManager>().SingleInstance();
             builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
-            builder.RegisterType<ConfigurationService>().As<IConfigurationService>().SingleInstance();
+            builder.RegisterType<SettingsService>().As<ISettingsService>().SingleInstance();
+
+            builder.RegisterAssemblyTypes(AssemblySource.Instance.ToArray()).AssignableTo<IScreenTab>().AsImplementedInterfaces();
         }
     }
 }

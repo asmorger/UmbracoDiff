@@ -105,17 +105,27 @@
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="AutofacConfiguration.cs" />
+    <Compile Include="Enums\ScreenTabDisplayOrder.cs" />
+    <Compile Include="Events\NotConfiguredEvent.cs" />
     <Compile Include="Models\Settings.cs" />
-    <Compile Include="Models\UmbracoConnection.cs" />
+    <Compile Include="Models\UmbracoConnectionModel.cs" />
     <Compile Include="PropertyViewer.xaml.cs">
       <DependentUpon>PropertyViewer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Services\Base\IConfigurationService.cs" />
-    <Compile Include="Services\ConfigurationService.cs" />
+    <Compile Include="Services\Base\ISettingsService.cs" />
+    <Compile Include="Services\SettingsService.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
+    <Compile Include="ViewModels\Base\IScreenTab.cs" />
     <Compile Include="ViewModels\Screens\CompareScreenViewModel.cs" />
+    <Compile Include="ViewModels\Screens\SettingsScreenViewModel.cs" />
     <Compile Include="Views\AppView.xaml.cs">
       <DependentUpon>AppView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Screens\SettingsScreenView.xaml.cs">
+      <DependentUpon>SettingsScreenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UmbracoConnection.xaml.cs">
+      <DependentUpon>UmbracoConnection.xaml</DependentUpon>
     </Compile>
     <Page Include="Resources\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -144,6 +154,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AppView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Screens\SettingsScreenView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UmbracoConnection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

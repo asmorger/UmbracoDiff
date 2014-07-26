@@ -5,13 +5,13 @@ using UmbracoDiff.Models;
 
 namespace UmbracoDiff.Services
 {
-    internal class ConfigurationService : IConfigurationService
+    internal class SettingsService : ISettingsService
     {
         private readonly string _jsonPath;
 
         private Settings settings;
 
-        public ConfigurationService()
+        public SettingsService()
         {
             string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             _jsonPath = Path.Combine(appDataPath, "UmbracoDiff", "settings.json");

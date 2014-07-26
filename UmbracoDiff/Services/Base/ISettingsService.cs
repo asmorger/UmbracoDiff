@@ -2,7 +2,7 @@
 
 namespace UmbracoDiff.Services
 {
-    public interface IConfigurationService
+    public interface ISettingsService
     {
         void Save(Settings settings);
 
