@@ -8,6 +8,7 @@ using MahApps.Metro.Controls.Dialogs;
 using PropertyChanged;
 using UmbracoDiff.Events;
 using UmbracoDiff.Services;
+using UmbracoDiff.ViewModels.Dialogs;
 using UmbracoDiff.ViewModels.Screens;
 
 namespace UmbracoDiff.ViewModels
@@ -16,10 +17,12 @@ namespace UmbracoDiff.ViewModels
     public class AppViewModel : Conductor<IScreenTab>.Collection.OneActive, IHandle<NotConfiguredEvent>
     {
         private readonly IEventAggregator _eventAggregator;
+        private readonly IWindowManager _windowManager;
 
-        public AppViewModel(IEnumerable<IScreenTab> tabs, IEventAggregator eventAggregator)
+        public AppViewModel(IEnumerable<IScreenTab> tabs, IEventAggregator eventAggregator, IWindowManager windowManager)
         {
             _eventAggregator = eventAggregator;
+            _windowManager = windowManager;
             
             var sortedTabs = tabs.OrderBy(t => (int) t.GetDisplayOrder());
             Items.AddRange(sortedTabs);
@@ -38,6 +41,7 @@ namespace UmbracoDiff.ViewModels
         {
             ActivateTab<SettingsScreenViewModel>();
 
+            /*
             var window = Application.Current.MainWindow as MetroWindow;
 
             if (window != null)
@@ -45,6 +49,7 @@ namespace UmbracoDiff.ViewModels
                 window.ShowMessageAsync("Settings Not Configured",
                     "Please configure the settings field and save them to use this application");
             }
+            */
         }
 
         private void ActivateTab<TViewModel>() where TViewModel : IScreenTab

@@ -38,8 +38,6 @@ namespace UmbracoDiff
         /// </exception>
         protected override void Configure()
         {
-            AutoMapperConfiguration.RegisterMappings();
-            
             if (Container == null)
             {
                 var builder = new ContainerBuilder();
@@ -48,6 +46,8 @@ namespace UmbracoDiff
 
                 Container = builder.Build();
             }
+
+            AutoMapperConfiguration.RegisterMappings(Container);
         }
 
         /// <summary>

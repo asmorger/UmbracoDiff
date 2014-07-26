@@ -5,6 +5,7 @@ using Autofac;
 using AutoMapper;
 using Caliburn.Micro;
 using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using PropertyChanged;
 using UmbracoDiff.Enums;
 using UmbracoDiff.Models;
@@ -18,27 +19,20 @@ namespace UmbracoDiff.ViewModels.Screens
     public class SettingsScreenViewModel : Screen, IScreenTab
     {
         private readonly IComponentContext _componentContext;
-        private readonly IWindowManager _windowManager;
         private readonly ISettingsService _settingsService;
 
         public IObservableCollection<UmbracoConnectionViewModel> Connections { get; set; }
 
         public UmbracoConnectionModel SelectedConnection { get; set; }
 
-        public SettingsScreenViewModel(IComponentContext componentContext, IWindowManager windowManager, ISettingsService settingsService)
+        public SettingsScreenViewModel(IComponentContext componentContext, ISettingsService settingsService)
         {
             _componentContext = componentContext;
-            _windowManager = windowManager;
             _settingsService = settingsService;
 
             Connections = new BindableCollection<UmbracoConnectionViewModel>();
-        }
 
-        protected override void OnInitialize()
-        {
-            base.OnInitialize();
-
-            DisplayName = "Settings";
+            this.DisplayName = "Settings";
         }
 
         protected override void OnActivate()
@@ -48,7 +42,7 @@ namespace UmbracoDiff.ViewModels.Screens
             if (_settingsService.IsConfigured)
             {
                 var savedConnections = _settingsService.Get().Connections;
-                var viewModels = Mapper.Map<IEnumerable<UmbracoConnectionViewModel>>(savedConnections);
+                var viewModels = Mapper.Map<ICollection<UmbracoConnectionViewModel>>(savedConnections);
 
                 Connections.AddRange(viewModels);
             }
@@ -56,11 +50,10 @@ namespace UmbracoDiff.ViewModels.Screens
 
         public void CreateConnection()
         {
-            var dialog = _componentContext.Resolve<DbConnectionDialogViewModel>();
-            _windowManager.ShowDialog(dialog);
+            var viewModel = _componentContext.Resolve<UmbracoConnectionViewModel>();
+            viewModel.Header = "New Connection";
 
-            var window = Application.Current.MainWindow as MetroWindow;
-
+            Connections.Add(viewModel);
         }
 
         public ScreenTabDisplayOrder GetDisplayOrder()

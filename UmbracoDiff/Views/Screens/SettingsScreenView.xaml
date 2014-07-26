@@ -11,25 +11,28 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0">
-            <ListView x:Name="Connections">
-                <ListView.Style >
-                    <Style TargetType="ListView">
-                        <Style.Triggers>
-                            <Trigger Property="HasItems" Value="False">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="ListView">
-                                            <TextBlock Text="No Saved Connections" />
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </ListView.Style>
-            </ListView>
-            <Button x:Name="CreateConnection" Content="Add Connection" />
-        </StackPanel>
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"  CanContentScroll="True">
+            <StackPanel>
+                <TextBlock Text="Connections" FontSize="20" />
+                <ListView x:Name="Connections">
+                    <ListView.Style >
+                        <Style TargetType="ListView">
+                            <Style.Triggers>
+                                <Trigger Property="HasItems" Value="False">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ListView">
+                                                <TextBlock Text="No Saved Connections" />
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.Style>
+                </ListView>
+                <Button x:Name="CreateConnection" Content="Add Connection" />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

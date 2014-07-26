@@ -123,6 +123,7 @@
     <Compile Include="Services\SettingsService.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
     <Compile Include="ViewModels\Base\IScreenTab.cs" />
+    <Compile Include="ViewModels\Dialogs\Base\BaseDialog.cs" />
     <Compile Include="ViewModels\Dialogs\DbConnectionDialogViewModel.cs" />
     <Compile Include="ViewModels\Screens\CompareScreenViewModel.cs" />
     <Compile Include="ViewModels\Screens\SettingsScreenViewModel.cs" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.IO;
 using Newtonsoft.Json;
 using UmbracoDiff.Models;
@@ -47,7 +48,11 @@ namespace UmbracoDiff.Services
         {
             if (!File.Exists(_jsonPath))
             {
-                settings = new Settings();
+                settings = new Settings
+                {
+                    Connections = new Collection<UmbracoConnectionModel>()
+                };
+
                 return settings;
             }
 
