@@ -17,5 +17,20 @@ namespace UmbracoDiff.ViewModels.CompareTabs
         {
             return CompareTabDisplayOrder.DocType;
         }
+
+        public void MismatchedItemsSelectionChanged()
+        {
+            
+        }
+
+        public void MismatchedDetailLoadingRow()
+        {
+            
+        }
+
+        public void MismatchedDetailSelectionChanged()
+        {
+            
+        }
     }
 }

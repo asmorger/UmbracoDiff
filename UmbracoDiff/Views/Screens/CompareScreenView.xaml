@@ -37,7 +37,7 @@
             </StackPanel>
         </StackPanel>
         <Grid Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
-            <Button Content="Compare" Click="Button_Click" Margin="20" />
+            <Button x:Name="Compare" Content="Compare" Margin="20" />
         </Grid>
         <TabControl x:Name="Items" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" />
     </Grid>

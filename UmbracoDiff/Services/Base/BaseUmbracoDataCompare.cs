@@ -1,15 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using UmbracoDiff.Entities;
 using UmbracoDiff.Models;
+using UmbracoDiff.ViewModels.CompareTabs;
 
 namespace UmbracoDiff.Services
 {
-    public abstract class BaseUmbracoDataCompare<TDataType> : IDataCompareService<TDataType, CmsNode> where TDataType : CmsNode, new()
+    public abstract class BaseUmbracoDataCompare<TDataType> : IDataCompareService<TDataType, CmsNodeViewModel> where TDataType : CmsNode, new()
     {
         public abstract IList<TDataType> GetData(string connectionString);
 
-        public DataComparissonResult<CmsNode> GetResults(string leftConnectionString, string rightConnectionString)
+        public DataComparissonResult<CmsNodeViewModel> GetResults(string leftConnectionString, string rightConnectionString)
         {
             var leftData = GetData(leftConnectionString);
             var rightData = GetData(rightConnectionString);
@@ -17,10 +19,13 @@ namespace UmbracoDiff.Services
             var leftResult = CompareDataSets(leftData, rightData);
             var rightResult = CompareDataSets(rightData, leftData);
 
-            var output = new DataComparissonResult<CmsNode>
+            var mappedLeftResult = Mapper.Map<IEnumerable<CmsNodeViewModel>>(leftResult);
+            var mappedRightResult = Mapper.Map<IEnumerable<CmsNodeViewModel>>(rightResult);
+
+            var output = new DataComparissonResult<CmsNodeViewModel>
             {
-                LeftResult = leftResult,
-                RightResult = rightResult
+                LeftResult = mappedLeftResult,
+                RightResult = mappedRightResult
             };
 
             return output;

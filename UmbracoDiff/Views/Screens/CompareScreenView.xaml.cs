@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using UmbracoCompare;
@@ -21,126 +19,7 @@ namespace UmbracoDiff.Views.Screens
         public CompareScreenView()
         {
             InitializeComponent();
-            DataContext = this;
         }
-
-        private readonly ObservableCollection<CmsNode> _dataTypesOnlyLeft = new ObservableCollection<CmsNode>();
-        private readonly ObservableCollection<CmsNode> _dataTypesOnlyRight = new ObservableCollection<CmsNode>();
-
-        private readonly ObservableCollection<CmsNode> _docTypesOnlyLeft = new ObservableCollection<CmsNode>();
-        private readonly ObservableCollection<CmsNode> _docTypesOnlyRight = new ObservableCollection<CmsNode>();
-
-        private readonly ObservableCollection<string> _templatesOnlyLeft = new ObservableCollection<string>();
-        private readonly ObservableCollection<string> _templatesOnlyRight = new ObservableCollection<string>();
-
-        private readonly ObservableCollection<MismatchedDocTypeItemViewModel> _mismatchedProperties = new ObservableCollection<MismatchedDocTypeItemViewModel>();
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //_left = new CmsNodeHelper(ConnectionString1TextBox.Text);
-            //_right = new CmsNodeHelper(ConnectionString2TextBox.Text);
-
-            CompareAndBindDataTypes();
-            CompareAndBindDocTypes();
-            CompareAndBindTemplates();
-        }
-
-        private void CompareAndBindDataTypes()
-        {
-            /* Moved to DataTypeDataCompareService
-            _dataTypesOnlyLeft.Clear();
-            _dataTypesOnlyRight.Clear();
-
-            var l = _left.GetAllDataTypes();
-            var r = _right.GetAllDataTypes();
-
-            CompareAndFillCmsNodes(l, r, _dataTypesOnlyLeft, _dataTypesOnlyRight);
-            */
-
-            //OutputDataTypesLeft.ItemsSource = _dataTypesOnlyLeft;
-            //OutputDataTypesRight.ItemsSource = _dataTypesOnlyRight;
-        }
-
-        private void CompareAndBindDocTypes()
-        {
-            /*  Moved to DoctTypeDataCompareService
-            _docTypesOnlyLeft.Clear();
-            _docTypesOnlyRight.Clear();
-
-            var leftData = _left.GetAllDocTypes().ToList();
-            var rightData = _right.GetAllDocTypes().ToList();
-
-            CompareAndFillCmsNodes(leftData, rightData, _docTypesOnlyLeft, _docTypesOnlyRight);
-            */
-
-            // currently implementing
-            //CompareAndBindMismatchedDocTypes(leftData.ToList(), rightData.ToList());
-
-            //OutputDocTypesLeft.ItemsSource =    _docTypesOnlyLeft;
-            //OutputDocTypesRight.ItemsSource =   _docTypesOnlyRight;
-        }
-
-        private void CompareAndBindTemplates()
-        {
-            /* moved to TemplateDataCompareService
-            _templatesOnlyLeft.Clear();
-            _templatesOnlyRight.Clear();
-
-            var leftData =  _left.GetAllTemplates(ConnectionString1TextBox.Text);
-            var rightData = _right.GetAllTemplates(ConnectionString2TextBox.Text);
-
-            CompareAndFill(leftData, rightData, _templatesOnlyLeft, _templatesOnlyRight);
-            */
-            //OutputTemplatesLeft.ItemsSource =   _templatesOnlyLeft;
-            //OutputTemplatesRight.ItemsSource =  _templatesOnlyRight;
-        }
-
-        /* moved to service
-        private void CompareAndFill(string[] leftData,
-                              string[] rightData,
-                              ObservableCollection<string> leftOutput,
-                              ObservableCollection<string> rightOutput)
-        {
-            foreach (var item in leftData)
-            {
-                if (!rightData.Contains(item))
-                {
-                    leftOutput.Add(item);
-                }
-            }
-
-            foreach (var item in rightData)
-            {
-                if (!leftData.Contains(item))
-                {
-                    rightOutput.Add(item);
-                }
-            }
-        }
-
-        private void CompareAndFillCmsNodes(IEnumerable<CmsNode> leftData,
-                              IEnumerable<CmsNode> rightData,
-                              ObservableCollection<CmsNode> leftOutput,
-                              ObservableCollection<CmsNode> rightOutput)
-        {
-            foreach (var item in leftData)
-            {
-                if (rightData.All(x => x.Text != item.Text))
-                {
-                    leftOutput.Add(item);
-                }
-            }
-
-            foreach (var item in rightData)
-            {
-                if (leftData.All(x => x.Text != item.Text))
-                {
-                    rightOutput.Add(item);
-                }
-            }
-        }
-
-        */
 
         // depriacated and moved to MismatchedDocTypeItemModel
         public class MismatchedDocTypeItemViewModel

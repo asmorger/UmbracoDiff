@@ -2,11 +2,11 @@
 using System.Linq;
 using UmbracoDiff.Entities;
 using UmbracoDiff.Helpers;
-using UmbracoDiff.Models;
+using UmbracoDiff.ViewModels.CompareTabs;
 
 namespace UmbracoDiff.Services.Umbraco
 {
-    public interface IDataTypeDataCompareService : IDataCompareService<DataType, CmsNode>
+    public interface IDataTypeDataCompareService : IDataCompareService<DataType, CmsNodeViewModel>
     {
         
     }

@@ -1,8 +1,9 @@
 ﻿using Autofac;
 using AutoMapper;
+using UmbracoDiff.Entities;
 using UmbracoDiff.Models;
+using UmbracoDiff.ViewModels.CompareTabs;
 using UmbracoDiff.ViewModels.Settings;
-
 
 namespace UmbracoDiff
 {
@@ -15,6 +16,8 @@ namespace UmbracoDiff
             Mapper.CreateMap<UmbracoConnectionModel, UmbracoConnectionViewModel>().ConstructUsingServiceLocator()
                 .ForMember(x => x.Header, s => s.MapFrom(src => src.Name));
             Mapper.CreateMap<UmbracoConnectionViewModel, UmbracoConnectionModel>();
+
+            Mapper.CreateMap<CmsNode, CmsNodeViewModel>();
         }
     }
 }

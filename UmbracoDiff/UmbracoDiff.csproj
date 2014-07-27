@@ -136,6 +136,7 @@
     <Compile Include="ViewModels\Base\ICompareTab.cs" />
     <Compile Include="ViewModels\Base\IScreenTab.cs" />
     <Compile Include="ViewModels\CompareTabs\BaseCompareTabViewModel.cs" />
+    <Compile Include="ViewModels\CompareTabs\CmsNodeViewModel.cs" />
     <Compile Include="ViewModels\CompareTabs\DataTypeTabViewModel.cs" />
     <Compile Include="ViewModels\CompareTabs\DocTypeTabViewModel.cs" />
     <Compile Include="ViewModels\CompareTabs\TemplateTabViewModel.cs" />
@@ -144,6 +145,9 @@
     <Compile Include="ViewModels\Settings\UmbracoConnectionViewModel.cs" />
     <Compile Include="Views\AppView.xaml.cs">
       <DependentUpon>AppView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CompareTabs\CmsNodeView.xaml.cs">
+      <DependentUpon>CmsNodeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CompareTabs\DataTypeTabView.xaml.cs">
       <DependentUpon>DataTypeTabView.xaml</DependentUpon>
@@ -166,6 +170,10 @@
     <Page Include="Resources\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CompareTabs\CmsNodeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CompareTabs\DataTypeTabView.xaml">
       <SubType>Designer</SubType>

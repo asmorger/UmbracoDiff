@@ -10,17 +10,13 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <DataGrid Grid.Column="0"
-                          Name="OutputTemplatesLeft"
-                          AutoGenerateColumns="False" CanUserAddRows="False">
+        <DataGrid Grid.Column="0" x:Name="LeftResults" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Only On Left" MinWidth="100" Width="SizeToCells" Binding="{Binding Mode=OneWay}">
                 </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid Grid.Column="1"
-                          Name="OutputTemplatesRight"
-                          AutoGenerateColumns="False" CanUserAddRows="False">
+        <DataGrid Grid.Column="1" Name="RightResults" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Only On Right" MinWidth="100" Width="SizeToCells" Binding="{Binding Mode=OneWay}">
                 </DataGridTextColumn>
