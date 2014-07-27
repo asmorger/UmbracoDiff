@@ -10,138 +10,35 @@
             <RowDefinition Height="80"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                 <TextBlock MinWidth="135" TextAlignment="Right" Margin="5">Left Connection String:</TextBlock>
-                <ComboBox x:Name="LeftConnections" cal:Message.Attach="[Event SelectionChanged] = [Action LeftItemChanged()]">
+                <ComboBox x:Name="LeftConnections" HorizontalAlignment="Stretch" cal:Message.Attach="[Event SelectionChanged] = [Action LeftItemChanged()]">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Name}" />
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <TextBox Name="ConnectionString1TextBox" Width="572"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock MinWidth="135" TextAlignment="Right" Margin="5">Right Connection String:</TextBlock>
-                <ComboBox x:Name="RightConnections">
+                <ComboBox x:Name="RightConnections" HorizontalAlignment="Stretch">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Name}" />
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <TextBox Name="ConnectionString2TextBox" Width="572"></TextBox>
             </StackPanel>
-            <Button Content="Compare" Click="Button_Click"></Button>
         </StackPanel>
-        <TabControl Grid.Row="1">
-            <TabItem Header="Data Types">
-                <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <DataGrid Grid.Column="0"
-                          Name="OutputDataTypesLeft"
-                          AutoGenerateColumns="False" CanUserAddRows="False">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Only On Left" MinWidth="100" Width="SizeToCells" Binding="{Binding Text,Mode=OneWay}">
-                            </DataGridTextColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <DataGrid Grid.Column="1"
-                          Name="OutputDataTypesRight"
-                          AutoGenerateColumns="False" CanUserAddRows="False">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Only On Right" MinWidth="100" Width="SizeToCells" Binding="{Binding Text,Mode=OneWay}">
-                            </DataGridTextColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Grid>
-            </TabItem>
-
-            <TabItem Header="Doc Types">
-                <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <DataGrid Grid.Column="0"
-                          Name="OutputDocTypesLeft"
-                          AutoGenerateColumns="False" CanUserAddRows="False">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Only On Left" MinWidth="150" Width="SizeToCells" Binding="{Binding Text,Mode=OneWay}">
-                            </DataGridTextColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <Grid Grid.Column="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <DataGrid Grid.Row="0" SelectedCellsChanged="OutputDocTypesMismatched_SelectedCellsChanged"
-                                Name="OutputDocTypesMismatched"
-                                AutoGenerateColumns="False" CanUserAddRows="False">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Mismatched Properties" MinWidth="150" Width="SizeToCells" Binding="{Binding Name,Mode=OneWay}">
-                                </DataGridTextColumn>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        <Grid Grid.Row="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <DataGrid Grid.Column="0" SelectedCellsChanged="OutputDocTypesMismatchedDetail_OnSelectedCellsChanged"
-                                      LoadingRow="OutputDocTypesMismatchedDetail_LoadingRow"
-                                Name="OutputDocTypesMismatchedDetail"
-                                AutoGenerateColumns="False" CanUserAddRows="False">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Left Properties" MinWidth="100" Width="SizeToCells" Binding="{Binding Left.Name,Mode=OneWay}">
-                                        
-                                    </DataGridTextColumn>
-                                    <DataGridTextColumn Header="Right Properties" MinWidth="100" Width="SizeToCells" Binding="{Binding Right.Name,Mode=OneWay}">
-                                    </DataGridTextColumn>
-                                </DataGrid.Columns>
-                            </DataGrid>
-                        </Grid>
-                    </Grid>
-                    <DataGrid Grid.Column="2"
-                          Name="OutputDocTypesRight"
-                          AutoGenerateColumns="False" CanUserAddRows="False">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Only On Right" MinWidth="150" Width="SizeToCells" Binding="{Binding Text,Mode=OneWay}">
-                            </DataGridTextColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Grid>
-            </TabItem>
-
-            <TabItem Header="Templates">
-                <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <DataGrid Grid.Column="0"
-                          Name="OutputTemplatesLeft"
-                          AutoGenerateColumns="False" CanUserAddRows="False">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Only On Left" MinWidth="100" Width="SizeToCells" Binding="{Binding Mode=OneWay}">
-                            </DataGridTextColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <DataGrid Grid.Column="1"
-                          Name="OutputTemplatesRight"
-                          AutoGenerateColumns="False" CanUserAddRows="False">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Only On Right" MinWidth="100" Width="SizeToCells" Binding="{Binding Mode=OneWay}">
-                            </DataGridTextColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Grid>
-            </TabItem>
-        </TabControl>
+        <Grid Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+            <Button Content="Compare" Click="Button_Click" Margin="20" />
+        </Grid>
+        <TabControl x:Name="Items" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" />
     </Grid>
 </UserControl>
