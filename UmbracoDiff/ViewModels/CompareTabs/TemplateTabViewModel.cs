@@ -4,16 +4,15 @@ using UmbracoDiff.Services.Umbraco;
 
 namespace UmbracoDiff.ViewModels.CompareTabs
 {
-    public class TemplateTabViewModel : Screen, ICompareTab
+    public class TemplateTabViewModel : BaseCompareTabViewModel<string, string>
     {
-        private readonly ITemplateDataCompareService _templateService;
-
-        public TemplateTabViewModel(ITemplateDataCompareService templateService)
+        public TemplateTabViewModel(ITemplateDataCompareService templateService, IEventAggregator eventAggregator) 
+            : base(templateService, eventAggregator)
         {
-            _templateService = templateService;
+            this.DisplayName = "templates";
         }
 
-        public CompareTabDisplayOrder GetDisplayOrder()
+        public override CompareTabDisplayOrder GetDisplayOrder()
         {
             return CompareTabDisplayOrder.Template;
         }

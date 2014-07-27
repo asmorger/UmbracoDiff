@@ -114,7 +114,9 @@
     <Compile Include="AutoMapperConfiguration.cs" />
     <Compile Include="Enums\CompareTabDisplayOrder.cs" />
     <Compile Include="Enums\ScreenTabDisplayOrder.cs" />
+    <Compile Include="Events\DataLoadedEvent.cs" />
     <Compile Include="Events\NotConfiguredEvent.cs" />
+    <Compile Include="Extensions\WindowManagerExtensions.cs" />
     <Compile Include="Models\DataComparissonResult.cs" />
     <Compile Include="Models\MismatchedDataComparissonResult.cs" />
     <Compile Include="Models\MismatchedDocTypeItemModel.cs" />
@@ -133,6 +135,7 @@
     <Compile Include="ViewModels\AppViewModel.cs" />
     <Compile Include="ViewModels\Base\ICompareTab.cs" />
     <Compile Include="ViewModels\Base\IScreenTab.cs" />
+    <Compile Include="ViewModels\CompareTabs\BaseCompareTabViewModel.cs" />
     <Compile Include="ViewModels\CompareTabs\DataTypeTabViewModel.cs" />
     <Compile Include="ViewModels\CompareTabs\DocTypeTabViewModel.cs" />
     <Compile Include="ViewModels\CompareTabs\TemplateTabViewModel.cs" />

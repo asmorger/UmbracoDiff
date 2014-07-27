@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Caliburn.Micro;
+using MahApps.Metro.Controls.Dialogs;
 using PropertyChanged;
 using UmbracoDiff.Events;
+using UmbracoDiff.Extensions;
 using UmbracoDiff.ViewModels.Screens;
 
 namespace UmbracoDiff.ViewModels
@@ -24,19 +27,9 @@ namespace UmbracoDiff.ViewModels
             _eventAggregator.Subscribe(this);
         }
 
-        public void Handle(NotConfiguredEvent message)
+        public async void Handle(NotConfiguredEvent message)
         {
-            ActivateTab<SettingsScreenViewModel>();
-
-            /*
-            var window = Application.Current.MainWindow as MetroWindow;
-
-            if (window != null)
-            {
-                window.ShowMessageAsync("Settings Not Configured",
-                    "Please configure the settings field and save them to use this application");
-            }
-            */
+            ShowSettingsMessage();
         }
 
         protected override void OnInitialize()
@@ -44,6 +37,17 @@ namespace UmbracoDiff.ViewModels
             base.OnInitialize();
 
             DisplayName = "Umbraco Diff - Compare";
+        }
+
+        private async Task ShowSettingsMessage()
+        {
+            var window = _windowManager.GetMetroWindow();
+            var result = await window.ShowMessageAsync("Settings Not Configured", "Please configure the settings field and save them to use this application");
+
+            if (result == MessageDialogResult.Affirmative)
+            {
+                ActivateTab<SettingsScreenViewModel>();
+            }
         }
 
         private void ActivateTab<TViewModel>() where TViewModel : IScreenTab

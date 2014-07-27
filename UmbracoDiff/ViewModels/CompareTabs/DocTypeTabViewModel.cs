@@ -1,19 +1,19 @@
 ﻿using Caliburn.Micro;
+using UmbracoDiff.Entities;
 using UmbracoDiff.Enums;
 using UmbracoDiff.Services.Umbraco;
 
 namespace UmbracoDiff.ViewModels.CompareTabs
 {
-    public class DocTypeTabViewModel : Screen, ICompareTab
+    public class DocTypeTabViewModel : BaseCompareTabViewModel<DocType, CmsNode>
     {
-        private readonly IDocTypeDataCompareService _docTypeService;
-
-        public DocTypeTabViewModel(IDocTypeDataCompareService docTypeService)
+        public DocTypeTabViewModel(IDocTypeDataCompareService docTypeService, IEventAggregator eventAggregator) 
+            : base(docTypeService, eventAggregator)
         {
-            _docTypeService = docTypeService;
+            this.DisplayName = "doc types";
         }
 
-        public CompareTabDisplayOrder GetDisplayOrder()
+        public override CompareTabDisplayOrder GetDisplayOrder()
         {
             return CompareTabDisplayOrder.DocType;
         }

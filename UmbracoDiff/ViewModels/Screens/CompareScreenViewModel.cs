@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Caliburn.Micro;
+using MahApps.Metro.Controls.Dialogs;
 using PropertyChanged;
 using UmbracoDiff.Enums;
 using UmbracoDiff.Events;
+using UmbracoDiff.Extensions;
 using UmbracoDiff.Models;
 using UmbracoDiff.Services;
 using UmbracoDiff.Services.Umbraco;
@@ -12,10 +15,11 @@ using UmbracoDiff.Services.Umbraco;
 namespace UmbracoDiff.ViewModels.Screens
 {
     [ImplementPropertyChanged]
-    public class CompareScreenViewModel : Conductor<ICompareTab>.Collection.OneActive, IScreenTab
+    public class CompareScreenViewModel : Conductor<ICompareTab>.Collection.OneActive, IScreenTab, IHandle<DataLoadedEvent>
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly ISettingsService _settingsService;
+        private readonly IWindowManager _windowManager;
 
         public IObservableCollection<UmbracoConnectionModel> LeftConnections { get; set; }
         public IObservableCollection<UmbracoConnectionModel> RightConnections { get; set; }
@@ -23,12 +27,18 @@ namespace UmbracoDiff.ViewModels.Screens
         public UmbracoConnectionModel SelectedLeftConnection { get; set; }
         public UmbracoConnectionModel SelectedRightConnection { get; set; }
 
+        public ProgressDialogController DialogController { get; set; }
+
+        public List<DataLoadedEvent> DataLoadedEvents { get; set; }
+
         public CompareScreenViewModel(IEventAggregator eventAggregator
                                     , ISettingsService settingsService
+                                    , IWindowManager windowManager
                                     , IEnumerable<ICompareTab> tabs)
         {
             _eventAggregator = eventAggregator;
             _settingsService = settingsService;
+            _windowManager = windowManager;
 
             LeftConnections = new BindableCollection<UmbracoConnectionModel>();
             RightConnections = new BindableCollection<UmbracoConnectionModel>();
@@ -71,6 +81,19 @@ namespace UmbracoDiff.ViewModels.Screens
             }
         }
 
+        public async Task Compare()
+        {
+            DataLoadedEvents.Clear();
+
+            var metroWinow = _windowManager.GetMetroWindow();
+            DialogController = await metroWinow.ShowProgressAsync("Comparing", "Please wait");
+
+            foreach (var tab in Items)
+            {
+                tab.Execute(SelectedLeftConnection.ConnectionString, SelectedRightConnection.ConnectionString);
+            }
+        }
+
         public void LeftItemChanged()
         {
             var settings = _settingsService.Get();
@@ -82,6 +105,16 @@ namespace UmbracoDiff.ViewModels.Screens
         public ScreenTabDisplayOrder GetDisplayOrder()
         {
             return ScreenTabDisplayOrder.Compare;
+        }
+
+        public void Handle(DataLoadedEvent message)
+        {
+            DataLoadedEvents.Add(message);
+
+            if (DataLoadedEvents.Count == Items.Count)
+            {
+                DialogController.CloseAsync();
+            }
         }
     }
 }

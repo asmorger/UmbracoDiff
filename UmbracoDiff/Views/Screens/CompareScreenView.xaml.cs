@@ -37,8 +37,8 @@ namespace UmbracoDiff.Views.Screens
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            _left = new CmsNodeHelper(ConnectionString1TextBox.Text);
-            _right = new CmsNodeHelper(ConnectionString2TextBox.Text);
+            //_left = new CmsNodeHelper(ConnectionString1TextBox.Text);
+            //_right = new CmsNodeHelper(ConnectionString2TextBox.Text);
 
             CompareAndBindDataTypes();
             CompareAndBindDocTypes();
@@ -57,8 +57,8 @@ namespace UmbracoDiff.Views.Screens
             CompareAndFillCmsNodes(l, r, _dataTypesOnlyLeft, _dataTypesOnlyRight);
             */
 
-            OutputDataTypesLeft.ItemsSource = _dataTypesOnlyLeft;
-            OutputDataTypesRight.ItemsSource = _dataTypesOnlyRight;
+            //OutputDataTypesLeft.ItemsSource = _dataTypesOnlyLeft;
+            //OutputDataTypesRight.ItemsSource = _dataTypesOnlyRight;
         }
 
         private void CompareAndBindDocTypes()
@@ -76,8 +76,8 @@ namespace UmbracoDiff.Views.Screens
             // currently implementing
             //CompareAndBindMismatchedDocTypes(leftData.ToList(), rightData.ToList());
 
-            OutputDocTypesLeft.ItemsSource =    _docTypesOnlyLeft;
-            OutputDocTypesRight.ItemsSource =   _docTypesOnlyRight;
+            //OutputDocTypesLeft.ItemsSource =    _docTypesOnlyLeft;
+            //OutputDocTypesRight.ItemsSource =   _docTypesOnlyRight;
         }
 
         private void CompareAndBindTemplates()
@@ -91,8 +91,8 @@ namespace UmbracoDiff.Views.Screens
 
             CompareAndFill(leftData, rightData, _templatesOnlyLeft, _templatesOnlyRight);
             */
-            OutputTemplatesLeft.ItemsSource =   _templatesOnlyLeft;
-            OutputTemplatesRight.ItemsSource =  _templatesOnlyRight;
+            //OutputTemplatesLeft.ItemsSource =   _templatesOnlyLeft;
+            //OutputTemplatesRight.ItemsSource =  _templatesOnlyRight;
         }
 
         /* moved to service
@@ -180,7 +180,7 @@ namespace UmbracoDiff.Views.Screens
                     models.Add(new PropertyViewModel {Left = new PropertyType(), Right = rightProp});
                 }
 
-                OutputDocTypesMismatchedDetail.ItemsSource = models;
+                //OutputDocTypesMismatchedDetail.ItemsSource = models;
             }
         }
 

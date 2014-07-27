@@ -1,19 +1,20 @@
 ﻿using Caliburn.Micro;
+using UmbracoDiff.Entities;
 using UmbracoDiff.Enums;
+using UmbracoDiff.Events;
 using UmbracoDiff.Services.Umbraco;
 
 namespace UmbracoDiff.ViewModels.CompareTabs
 {
-    public class DataTypeTabViewModel : Screen, ICompareTab
+    public class DataTypeTabViewModel : BaseCompareTabViewModel<DataType, CmsNode>, ICompareTab
     {
-        private readonly IDataTypeDataCompareService _dataTypeService;
-
-        public DataTypeTabViewModel(IDataTypeDataCompareService dataTypeService)
+        public DataTypeTabViewModel(IDataTypeDataCompareService dataTypeService, IEventAggregator eventAggregator) 
+            : base(dataTypeService, eventAggregator)
         {
-            _dataTypeService = dataTypeService;
+            this.DisplayName = "data types";
         }
 
-        public CompareTabDisplayOrder GetDisplayOrder()
+        public override CompareTabDisplayOrder GetDisplayOrder()
         {
             return CompareTabDisplayOrder.DataType;
         }
