@@ -47,7 +47,7 @@ namespace UmbracoDiff.Views.Screens
 
         private void CompareAndBindDataTypes()
         {
-
+            /* Moved to DataTypeDataCompareService
             _dataTypesOnlyLeft.Clear();
             _dataTypesOnlyRight.Clear();
 
@@ -55,6 +55,7 @@ namespace UmbracoDiff.Views.Screens
             var r = _right.GetAllDataTypes();
 
             CompareAndFillCmsNodes(l, r, _dataTypesOnlyLeft, _dataTypesOnlyRight);
+            */
 
             OutputDataTypesLeft.ItemsSource = _dataTypesOnlyLeft;
             OutputDataTypesRight.ItemsSource = _dataTypesOnlyRight;
@@ -62,6 +63,7 @@ namespace UmbracoDiff.Views.Screens
 
         private void CompareAndBindDocTypes()
         {
+            /*  Moved to DoctTypeDataCompareService
             _docTypesOnlyLeft.Clear();
             _docTypesOnlyRight.Clear();
 
@@ -69,34 +71,18 @@ namespace UmbracoDiff.Views.Screens
             var rightData = _right.GetAllDocTypes().ToList();
 
             CompareAndFillCmsNodes(leftData, rightData, _docTypesOnlyLeft, _docTypesOnlyRight);
+            */
 
-            CompareAndBindMismatchedDocTypes(leftData.ToList(), rightData.ToList());
+            // currently implementing
+            //CompareAndBindMismatchedDocTypes(leftData.ToList(), rightData.ToList());
 
             OutputDocTypesLeft.ItemsSource =    _docTypesOnlyLeft;
             OutputDocTypesRight.ItemsSource =   _docTypesOnlyRight;
         }
 
-        private void CompareAndBindMismatchedDocTypes(IEnumerable<DocType> left, IEnumerable<DocType> right)
-        {
-            _mismatchedProperties.Clear();
-
-            var rightDocTypes = right.ToList();
-            foreach (var docTypeLeft in left)
-            {
-                var docTypeRight = rightDocTypes.FirstOrDefault(x => x.Text == docTypeLeft.Text);
-                if (docTypeRight != null)
-                {
-                    if (!docTypeLeft.PropertiesAreEqual(docTypeRight))
-                    {
-                        _mismatchedProperties.Add(new MismatchedDocTypeItemViewModel {Left = docTypeLeft, Right = docTypeRight});
-                    }
-                }
-            }
-            OutputDocTypesMismatched.ItemsSource = _mismatchedProperties;
-        }
-
         private void CompareAndBindTemplates()
         {
+            /* moved to TemplateDataCompareService
             _templatesOnlyLeft.Clear();
             _templatesOnlyRight.Clear();
 
@@ -104,11 +90,12 @@ namespace UmbracoDiff.Views.Screens
             var rightData = _right.GetAllTemplates(ConnectionString2TextBox.Text);
 
             CompareAndFill(leftData, rightData, _templatesOnlyLeft, _templatesOnlyRight);
-
+            */
             OutputTemplatesLeft.ItemsSource =   _templatesOnlyLeft;
             OutputTemplatesRight.ItemsSource =  _templatesOnlyRight;
         }
 
+        /* moved to service
         private void CompareAndFill(string[] leftData,
                               string[] rightData,
                               ObservableCollection<string> leftOutput,
@@ -153,6 +140,9 @@ namespace UmbracoDiff.Views.Screens
             }
         }
 
+        */
+
+        // depriacated and moved to MismatchedDocTypeItemModel
         public class MismatchedDocTypeItemViewModel
         {
             public string Name { get { return Left.Text; } }

@@ -114,14 +114,20 @@
     <Compile Include="AutoMapperConfiguration.cs" />
     <Compile Include="Enums\ScreenTabDisplayOrder.cs" />
     <Compile Include="Events\NotConfiguredEvent.cs" />
+    <Compile Include="Models\DataComparissonResult.cs" />
+    <Compile Include="Models\MismatchedDocTypeItemModel.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\UmbracoConnectionModel.cs" />
     <Compile Include="PropertyViewer.xaml.cs">
       <DependentUpon>PropertyViewer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\Base\BaseUmbracoDataCompare.cs" />
     <Compile Include="Services\Base\IDataCompareService.cs" />
     <Compile Include="Services\Base\ISettingsService.cs" />
     <Compile Include="Services\SettingsService.cs" />
+    <Compile Include="Services\Umbraco\DataTypesDataCompareService.cs" />
+    <Compile Include="Services\Umbraco\DocTypeDataCompareService.cs" />
+    <Compile Include="Services\Umbraco\TemplateDataCompareService.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
     <Compile Include="ViewModels\Base\IScreenTab.cs" />
     <Compile Include="ViewModels\Screens\CompareScreenViewModel.cs" />
