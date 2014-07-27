@@ -1,15 +1,18 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Caliburn.Micro;
 using PropertyChanged;
 using UmbracoDiff.Enums;
 using UmbracoDiff.Events;
 using UmbracoDiff.Models;
 using UmbracoDiff.Services;
+using UmbracoDiff.Services.Umbraco;
 
 namespace UmbracoDiff.ViewModels.Screens
 {
     [ImplementPropertyChanged]
-    public class CompareScreenViewModel : Screen, IScreenTab
+    public class CompareScreenViewModel : Conductor<ICompareTab>.Collection.OneActive, IScreenTab
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly ISettingsService _settingsService;
@@ -20,7 +23,9 @@ namespace UmbracoDiff.ViewModels.Screens
         public UmbracoConnectionModel SelectedLeftConnection { get; set; }
         public UmbracoConnectionModel SelectedRightConnection { get; set; }
 
-        public CompareScreenViewModel(IEventAggregator eventAggregator, ISettingsService settingsService)
+        public CompareScreenViewModel(IEventAggregator eventAggregator
+                                    , ISettingsService settingsService
+                                    , IEnumerable<ICompareTab> tabs)
         {
             _eventAggregator = eventAggregator;
             _settingsService = settingsService;
@@ -30,6 +35,9 @@ namespace UmbracoDiff.ViewModels.Screens
 
             SelectedLeftConnection = new UmbracoConnectionModel();
             SelectedRightConnection = new UmbracoConnectionModel();
+
+            var sortedTabs = tabs.OrderBy(t => (int) t.GetDisplayOrder());
+            this.Items.AddRange(sortedTabs);
 
             this.DisplayName = "Compare";
         }

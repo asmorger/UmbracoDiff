@@ -52,6 +52,7 @@ namespace UmbracoDiff.ViewModels.Screens
         {
             var viewModel = _componentContext.Resolve<UmbracoConnectionViewModel>();
             viewModel.Header = "New Connection";
+            viewModel.IsExpanded = true;
 
             Connections.Add(viewModel);
         }

@@ -26,7 +26,7 @@ namespace UmbracoDiff.Services
             return output;
         }
 
-        private IEnumerable<CmsNode> CompareDataSets(IEnumerable<TDataType> left, IEnumerable<TDataType> right)
+        protected IEnumerable<CmsNode> CompareDataSets(IEnumerable<TDataType> left, IEnumerable<TDataType> right)
         {
             var same = from l in left
                        join r in right on l.Text.ToLower() equals r.Text.ToLower()

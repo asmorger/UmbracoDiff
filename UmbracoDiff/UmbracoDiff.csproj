@@ -112,9 +112,11 @@
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="AutofacConfiguration.cs" />
     <Compile Include="AutoMapperConfiguration.cs" />
+    <Compile Include="Enums\CompareTabDisplayOrder.cs" />
     <Compile Include="Enums\ScreenTabDisplayOrder.cs" />
     <Compile Include="Events\NotConfiguredEvent.cs" />
     <Compile Include="Models\DataComparissonResult.cs" />
+    <Compile Include="Models\MismatchedDataComparissonResult.cs" />
     <Compile Include="Models\MismatchedDocTypeItemModel.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\UmbracoConnectionModel.cs" />
@@ -129,12 +131,25 @@
     <Compile Include="Services\Umbraco\DocTypeDataCompareService.cs" />
     <Compile Include="Services\Umbraco\TemplateDataCompareService.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
+    <Compile Include="ViewModels\Base\ICompareTab.cs" />
     <Compile Include="ViewModels\Base\IScreenTab.cs" />
+    <Compile Include="ViewModels\CompareTabs\DataTypeTabViewModel.cs" />
+    <Compile Include="ViewModels\CompareTabs\DocTypeTabViewModel.cs" />
+    <Compile Include="ViewModels\CompareTabs\TemplateTabViewModel.cs" />
     <Compile Include="ViewModels\Screens\CompareScreenViewModel.cs" />
     <Compile Include="ViewModels\Screens\SettingsScreenViewModel.cs" />
     <Compile Include="ViewModels\Settings\UmbracoConnectionViewModel.cs" />
     <Compile Include="Views\AppView.xaml.cs">
       <DependentUpon>AppView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CompareTabs\DataTypeTabView.xaml.cs">
+      <DependentUpon>DataTypeTabView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CompareTabs\DocTypeTabView.xaml.cs">
+      <DependentUpon>DocTypeTabView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CompareTabs\TemplateTabView.xaml.cs">
+      <DependentUpon>TemplateTabView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UmbracoConnectionView.xaml.cs">
       <DependentUpon>UmbracoConnectionView.xaml</DependentUpon>
@@ -148,6 +163,18 @@
     <Page Include="Resources\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CompareTabs\DataTypeTabView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CompareTabs\DocTypeTabView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CompareTabs\TemplateTabView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UmbracoConnectionView.xaml">
       <SubType>Designer</SubType>

@@ -7,7 +7,12 @@ using UmbracoDiff.Models;
 
 namespace UmbracoDiff.Services.Umbraco
 {
-    public class TemplateDataCompareService : IDataCompareService<string, string>
+    public interface ITemplateDataCompareService : IDataCompareService<string, string>
+    {
+        
+    }
+
+    public class TemplateDataCompareService : IDataCompareService<string, string>, ITemplateDataCompareService
     {
         public IList<string> GetData(string connectionString)
         {

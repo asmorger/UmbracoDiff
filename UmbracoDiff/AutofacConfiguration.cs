@@ -4,6 +4,7 @@ using System.Linq;
 using Autofac;
 using Caliburn.Micro;
 using UmbracoDiff.Services;
+using UmbracoDiff.Services.Umbraco;
 using UmbracoDiff.ViewModels;
 using UmbracoDiff.ViewModels.Screens;
 
@@ -32,7 +33,7 @@ namespace UmbracoDiff
             builder.RegisterAssemblyTypes(AssemblySource.Instance.ToArray())
                 .Where(type => type.Name.EndsWith("ViewModel") || type.Name.EndsWith("Model"))
                 .Where(type => !string.IsNullOrWhiteSpace(type.Namespace) && (type.Namespace.Contains("ViewModels") || type.Namespace.Contains("Models")))
-                .Where(type => type.GetInterface(typeof (INotifyPropertyChanged).Name) != null)
+                .Where(type => type.GetInterface(typeof(INotifyPropertyChanged).Name) != null)
                 .AsSelf()
                 .InstancePerDependency();
         }
@@ -70,7 +71,12 @@ namespace UmbracoDiff
                 .WithParameter("folderPath", Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData))
                 .SingleInstance();
 
+            builder.RegisterType<DataTypesDataCompareService>().As<IDataTypeDataCompareService>().InstancePerDependency();
+            builder.RegisterType<DocTypeDataCompareService>().As<IDocTypeDataCompareService>().InstancePerDependency();
+            builder.RegisterType<TemplateDataCompareService>().As<ITemplateDataCompareService>().InstancePerDependency();
+
             builder.RegisterAssemblyTypes(AssemblySource.Instance.ToArray()).AssignableTo<IScreenTab>().AsImplementedInterfaces();
+            builder.RegisterAssemblyTypes(AssemblySource.Instance.ToArray()).AssignableTo<ICompareTab>().AsImplementedInterfaces();
         }
     }
 }
