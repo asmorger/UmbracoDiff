@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using PropertyChanged;
 using UmbracoCompare;
 
 namespace UmbracoDiff.Entities
 {
+    [ImplementPropertyChanged]
     public class DocType : CmsNode
     {
         public DocType()

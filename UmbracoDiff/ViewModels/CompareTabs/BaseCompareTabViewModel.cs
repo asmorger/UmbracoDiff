@@ -2,6 +2,7 @@
 using Caliburn.Micro;
 using UmbracoDiff.Enums;
 using UmbracoDiff.Events;
+using UmbracoDiff.Models;
 using UmbracoDiff.Services;
 
 namespace UmbracoDiff.ViewModels.CompareTabs
@@ -26,21 +27,30 @@ namespace UmbracoDiff.ViewModels.CompareTabs
 
         public abstract CompareTabDisplayOrder GetDisplayOrder();
 
+        public virtual void PostExecute(DataComparissonResult<TResultType> results)
+        {
+            
+        }
+
         public void Execute(string leftConnectionString, string rightConnectionString)
         {
             var results = _compareService.GetResults(leftConnectionString, rightConnectionString);
 
             if (results.LeftResult != null && results.LeftResult.Any())
             {
+                LeftResults.Clear();
                 LeftResults.AddRange(results.LeftResult);
             }
 
             if (results.RightResult != null && results.RightResult.Any())
             {
+                RightResults.Clear();
                 RightResults.AddRange(results.RightResult);
             }
 
-            _eventAggregator.PublishOnUIThread(new DataLoadedEvent());
+            PostExecute(results);
+
+            _eventAggregator.PublishOnBackgroundThread(new DataLoadedEvent());
         }
     }
 }

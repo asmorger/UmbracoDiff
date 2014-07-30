@@ -2,7 +2,6 @@
 using AutoMapper;
 using Caliburn.Micro;
 using PropertyChanged;
-using UmbracoDiff.Events;
 using UmbracoDiff.Models;
 using UmbracoDiff.Services;
 
@@ -15,6 +14,7 @@ namespace UmbracoDiff.ViewModels.Settings
         private readonly IEventAggregator _eventAggregator;
 
         public string Header { get; set; }
+
         public string Name { get; set; }
         public string ConnectionString { get; set; }
 
@@ -42,6 +42,7 @@ namespace UmbracoDiff.ViewModels.Settings
             settings.Connections.Add(model);
             _settingsService.Save(settings);
 
+            this.Header = this.Name;
             this.IsExpanded = false;
         }
     }

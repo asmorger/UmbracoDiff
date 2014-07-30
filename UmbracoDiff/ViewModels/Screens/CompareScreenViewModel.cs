@@ -38,11 +38,15 @@ namespace UmbracoDiff.ViewModels.Screens
             _settingsService = settingsService;
             _windowManager = windowManager;
 
+            _eventAggregator.Subscribe(this);
+
             LeftConnections = new BindableCollection<UmbracoConnectionModel>();
             RightConnections = new BindableCollection<UmbracoConnectionModel>();
 
             SelectedLeftConnection = new UmbracoConnectionModel();
             SelectedRightConnection = new UmbracoConnectionModel();
+
+            DataLoadedEvents = new List<DataLoadedEvent>();
 
             var sortedTabs = tabs.OrderBy(t => (int) t.GetDisplayOrder());
             this.Items.AddRange(sortedTabs);
@@ -82,12 +86,14 @@ namespace UmbracoDiff.ViewModels.Screens
             }
         }
 
-        public async Task Compare()
+        public async void Compare()
         {
             DataLoadedEvents.Clear();
 
             var metroWinow = _windowManager.GetMetroWindow();
             DialogController = await metroWinow.ShowProgressAsync("Comparing", "Please wait");
+
+            var tabsList = new List<ICompareTab>(Items);
 
             foreach (var tab in Items)
             {

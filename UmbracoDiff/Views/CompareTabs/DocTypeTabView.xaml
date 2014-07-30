@@ -12,12 +12,9 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <DataGrid Grid.Column="0"
-                          Name="OutputDocTypesLeft"
-                          AutoGenerateColumns="False" CanUserAddRows="False">
+        <DataGrid Grid.Column="0" Name="LeftResults" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Only On Left" MinWidth="150" Width="SizeToCells" Binding="{Binding Text,Mode=OneWay}">
-                </DataGridTextColumn>
+                <DataGridTextColumn Header="Only On Left" MinWidth="150" Width="SizeToCells" Binding="{Binding Text,Mode=OneWay}" />
             </DataGrid.Columns>
         </DataGrid>
         <Grid Grid.Column="1">
@@ -29,34 +26,24 @@
                                 Name="OutputDocTypesMismatched"
                                 AutoGenerateColumns="False" CanUserAddRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Mismatched Properties" MinWidth="150" Width="SizeToCells" Binding="{Binding Name,Mode=OneWay}">
-                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Mismatched Properties" MinWidth="150" Width="SizeToCells" Binding="{Binding Name,Mode=OneWay}" />
                 </DataGrid.Columns>
             </DataGrid>
             <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
                 <DataGrid Grid.Column="0" 
                           cal:Message.Attach="[Event SelectedCellsChanged] =[Action MismatchedDetailSelectionChanged]; [Event LoadingRow] =[Action MismatchedDetailLoadingRow]"
-                                Name="OutputDocTypesMismatchedDetail"
+                                Name="MismatchedResults"
                                 AutoGenerateColumns="False" CanUserAddRows="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Left Properties" MinWidth="100" Width="SizeToCells" Binding="{Binding Left.Name,Mode=OneWay}">
-
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Header="Right Properties" MinWidth="100" Width="SizeToCells" Binding="{Binding Right.Name,Mode=OneWay}">
-                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Left Properties" MinWidth="100" Width="SizeToCells" Binding="{Binding Left.Name,Mode=OneWay}" />
+                        <DataGridTextColumn Header="Right Properties" MinWidth="100" Width="SizeToCells" Binding="{Binding Right.Name,Mode=OneWay}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
         </Grid>
-        <DataGrid Grid.Column="2"
-                          Name="OutputDocTypesRight"
-                          AutoGenerateColumns="False" CanUserAddRows="False">
+        <DataGrid Grid.Column="2" Name="RightResults" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Only On Right" MinWidth="150" Width="SizeToCells" Binding="{Binding Text,Mode=OneWay}">
-                </DataGridTextColumn>
+                <DataGridTextColumn Header="Only On Right" MinWidth="150" Width="SizeToCells" Binding="{Binding Text,Mode=OneWay}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

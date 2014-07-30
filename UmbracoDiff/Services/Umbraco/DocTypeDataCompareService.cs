@@ -38,8 +38,6 @@ namespace UmbracoDiff.Services.Umbraco
             };
 
             return output;
-
-            
         }
 
         private IList<MismatchedDocTypeItemModel> CompareAndBindMismatchedDocTypes(IEnumerable<DocType> left, IEnumerable<DocType> right)
