@@ -116,6 +116,7 @@
     <Compile Include="Enums\ScreenTabDisplayOrder.cs" />
     <Compile Include="Events\DataLoadedEvent.cs" />
     <Compile Include="Events\NotConfiguredEvent.cs" />
+    <Compile Include="Events\UmbracoConnectionRemovedEvent.cs" />
     <Compile Include="Extensions\WindowManagerExtensions.cs" />
     <Compile Include="Models\DataComparissonResult.cs" />
     <Compile Include="Models\MismatchedDataComparissonResult.cs" />

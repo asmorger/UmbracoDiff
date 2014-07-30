@@ -10,7 +10,10 @@
         <StackPanel Orientation="Vertical">
             <TextBox x:Name="Name" Margin="10" controls:TextboxHelper.Watermark="Name ..." />
             <TextBox x:Name="ConnectionString" Margin="10" controls:TextboxHelper.Watermark="Connection String ..." />
-            <Button x:Name="Save" Margin="15" Content="Save" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="Save" Margin="15" Content="Save" />
+                <Button x:Name="Delete" Margin="15" Content="Delete" />
+            </StackPanel>
         </StackPanel>
     </Expander>
 </UserControl>

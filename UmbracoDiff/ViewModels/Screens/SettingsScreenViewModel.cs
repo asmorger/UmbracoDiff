@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Autofac;
 using AutoMapper;
 using Caliburn.Micro;
@@ -12,15 +14,19 @@ using UmbracoDiff.ViewModels.Settings;
 namespace UmbracoDiff.ViewModels.Screens
 {
     [ImplementPropertyChanged]
-    public class SettingsScreenViewModel : Screen, IScreenTab
+    public class SettingsScreenViewModel : Screen, IScreenTab, IHandle<UmbracoConnectionRemovedEvent>
     {
         private readonly IComponentContext _componentContext;
         private readonly ISettingsService _settingsService;
+        private readonly IEventAggregator _eventAggregator;
 
-        public SettingsScreenViewModel(IComponentContext componentContext, ISettingsService settingsService)
+        public SettingsScreenViewModel(IComponentContext componentContext, ISettingsService settingsService, IEventAggregator eventAggregator)
         {
             _componentContext = componentContext;
             _settingsService = settingsService;
+            _eventAggregator = eventAggregator;
+
+            _eventAggregator.Subscribe(this);
 
             Connections = new BindableCollection<UmbracoConnectionViewModel>();
 
@@ -58,6 +64,16 @@ namespace UmbracoDiff.ViewModels.Screens
             viewModel.IsExpanded = true;
 
             Connections.Add(viewModel);
+        }
+
+        public void Handle(UmbracoConnectionRemovedEvent message)
+        {
+            var target = Connections.FirstOrDefault(c => string.Equals(c.Name, message.Name));
+
+            if (target != null)
+            {
+                Connections.Remove(target);
+            }
         }
     }
 }
