@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Caliburn.Micro;
@@ -10,7 +9,6 @@ using UmbracoDiff.Events;
 using UmbracoDiff.Extensions;
 using UmbracoDiff.Models;
 using UmbracoDiff.Services;
-using UmbracoDiff.Services.Umbraco;
 
 namespace UmbracoDiff.ViewModels.Screens
 {
@@ -56,6 +54,9 @@ namespace UmbracoDiff.ViewModels.Screens
         {
             base.OnActivate();
 
+            LeftConnections.Clear();
+            RightConnections.Clear();
+
             if (!_settingsService.IsConfigured)
             {
                 _eventAggregator.PublishOnUIThread(new NotConfiguredEvent());
@@ -98,6 +99,14 @@ namespace UmbracoDiff.ViewModels.Screens
         {
             var settings = _settingsService.Get();
             settings.LeftConnection = SelectedLeftConnection;
+
+            _settingsService.Save(settings);
+        }
+
+        public void RightItemChanged()
+        {
+            var settings = _settingsService.Get();
+            settings.RightConnection = SelectedRightConnection;
 
             _settingsService.Save(settings);
         }

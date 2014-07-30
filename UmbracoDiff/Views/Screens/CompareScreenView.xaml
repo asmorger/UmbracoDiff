@@ -27,7 +27,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock MinWidth="135" TextAlignment="Right" Margin="5">Right Connection String:</TextBlock>
-                <ComboBox x:Name="RightConnections" HorizontalAlignment="Stretch">
+                <ComboBox x:Name="RightConnections" HorizontalAlignment="Stretch" cal:Message.Attach="[Event SelectionChanged] = [Action RightItemChanged()]">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Name}" />

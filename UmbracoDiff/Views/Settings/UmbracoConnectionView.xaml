@@ -13,5 +13,4 @@
             <Button x:Name="Save" Margin="15" Content="Save" />
         </StackPanel>
     </Expander>
-
 </UserControl>

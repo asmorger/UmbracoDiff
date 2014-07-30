@@ -4,6 +4,7 @@ using AutoMapper;
 using Caliburn.Micro;
 using PropertyChanged;
 using UmbracoDiff.Enums;
+using UmbracoDiff.Events;
 using UmbracoDiff.Models;
 using UmbracoDiff.Services;
 using UmbracoDiff.ViewModels.Settings;
@@ -38,6 +39,8 @@ namespace UmbracoDiff.ViewModels.Screens
         protected override void OnActivate()
         {
             base.OnActivate();
+
+            Connections.Clear();
 
             if (_settingsService.IsConfigured)
             {
