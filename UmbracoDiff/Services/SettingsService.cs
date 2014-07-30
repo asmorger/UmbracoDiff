@@ -9,12 +9,14 @@ namespace UmbracoDiff.Services
     internal class SettingsService : ISettingsService
     {
         private readonly string _jsonPath;
+        private readonly IEncryptionService _encryption;
 
         private Settings settings;
 
-        public SettingsService(string folderPath)
+        public SettingsService(string folderPath, IEncryptionService encryption)
         {
             _jsonPath = Path.Combine(folderPath, "UmbracoDiff", "settings.json");
+            _encryption = encryption;
 
             var directoryName = Path.GetDirectoryName(_jsonPath);
             Directory.CreateDirectory(directoryName);
@@ -37,10 +39,12 @@ namespace UmbracoDiff.Services
 
         public void Save(Settings settings)
         {
-            using (var sw = new StreamWriter(_jsonPath))
+            using (var streamWriter = new StreamWriter(_jsonPath))
             {
                 var serializeSettings = JsonConvert.SerializeObject(settings, Formatting.Indented);
-                sw.Write(serializeSettings);
+                var encryptedSource = _encryption.Encrypt(serializeSettings);
+                
+                streamWriter.Write(encryptedSource);
             }
         }
 
@@ -56,9 +60,12 @@ namespace UmbracoDiff.Services
                 return settings;
             }
 
-            using (var sr = new StreamReader(_jsonPath))
+            using (var streamReader = new StreamReader(_jsonPath))
             {
-                var deserializeObject = JsonConvert.DeserializeObject<Settings>(sr.ReadToEnd().Trim());
+                var encryptedSource = streamReader.ReadToEnd();
+                var decryptedSource = _encryption.Decrypt(encryptedSource);
+
+                var deserializeObject = JsonConvert.DeserializeObject<Settings>(decryptedSource.Trim());
                 settings = deserializeObject;
 
                 return deserializeObject;

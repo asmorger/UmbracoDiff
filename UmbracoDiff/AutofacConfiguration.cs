@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using Autofac;
+using Autofac.Core;
 using Caliburn.Micro;
 using UmbracoDiff.Services;
 using UmbracoDiff.Services.Umbraco;
@@ -74,6 +75,7 @@ namespace UmbracoDiff
             builder.RegisterType<DataTypesDataCompareService>().As<IDataTypeDataCompareService>().InstancePerDependency();
             builder.RegisterType<DocTypeDataCompareService>().As<IDocTypeDataCompareService>().InstancePerDependency();
             builder.RegisterType<TemplateDataCompareService>().As<ITemplateDataCompareService>().InstancePerDependency();
+            builder.RegisterType<EncryptionService>().As<IEncryptionService>().InstancePerDependency();
 
             builder.RegisterAssemblyTypes(AssemblySource.Instance.ToArray()).AssignableTo<IScreenTab>().AsImplementedInterfaces();
             builder.RegisterAssemblyTypes(AssemblySource.Instance.ToArray()).AssignableTo<ICompareTab>().AsImplementedInterfaces();

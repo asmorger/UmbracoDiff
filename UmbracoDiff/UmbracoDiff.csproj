@@ -47,6 +47,9 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>..\packages\BouncyCastle.1.7.0\lib\Net40-Client\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="businesslogic">
       <HintPath>..\ThirdParty\Umbraco-4.11.10\businesslogic.dll</HintPath>
     </Reference>
@@ -80,6 +83,7 @@
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Printing" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.0.13.1.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
@@ -117,6 +121,7 @@
     <Compile Include="Events\DataLoadedEvent.cs" />
     <Compile Include="Events\NotConfiguredEvent.cs" />
     <Compile Include="Events\UmbracoConnectionRemovedEvent.cs" />
+    <Compile Include="Extensions\SecureStringExtensions.cs" />
     <Compile Include="Extensions\WindowManagerExtensions.cs" />
     <Compile Include="Models\DataComparissonResult.cs" />
     <Compile Include="Models\MismatchedDataComparissonResult.cs" />
@@ -128,7 +133,9 @@
     </Compile>
     <Compile Include="Services\Base\BaseUmbracoDataCompare.cs" />
     <Compile Include="Services\Base\IDataCompareService.cs" />
+    <Compile Include="Services\Base\IEncryptionService.cs" />
     <Compile Include="Services\Base\ISettingsService.cs" />
+    <Compile Include="Services\EncryptionService.cs" />
     <Compile Include="Services\SettingsService.cs" />
     <Compile Include="Services\Umbraco\DataTypesDataCompareService.cs" />
     <Compile Include="Services\Umbraco\DocTypeDataCompareService.cs" />
